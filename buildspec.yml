@@ -11,7 +11,7 @@ phases:
     commands:
       - echo build Docker image on `date`
       - cd src
-      - docker build -t awsm-sauce-repo:latest
+      - docker build -t awsm-sauce-repo:latest .
       - docker tag awsm-sauce-repo:latest 962804699607.dkr.ecr.us-west-2.amazonaws.com/awsm-sauce-repo:latest
   post_build:
     commands:
