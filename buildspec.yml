@@ -7,6 +7,9 @@ phases:
     commands:
       - echo logging in to AWS ECR...
       - aws ecr get-login-password --region us-west-2 | docker login --username AWS --password-stdin 962804699607.dkr.ecr.us-west-2.amazonaws.com
+      - terraform --version
+      - terraform init
+      - terraform apply --auto-approve
   build:
     commands:
       - echo build Docker image on `date`
@@ -17,7 +20,3 @@ phases:
       - echo build Docker image complete `date`
       - echo push latest Docker images to ECR...
       - docker push 962804699607.dkr.ecr.us-west-2.amazonaws.com/awsm-sauce-repo:latest
-      - echo Writing image definitions file...
-      - printf '[{"name":"awsm-sauce-tf-task","imageUri":"962804699607.dkr.ecr.us-west-2.amazonaws.com/awsm-sauce-repo:latest"}]' > imagedefinitions.json
-artifacts:
-  files: imagedefinitions.json
